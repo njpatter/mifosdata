@@ -32,8 +32,41 @@ Each surface pixel, both interior and exterior, was inverted and saved resulting
 
 After creating all geometries and pixel variants, each resulting image was processed to create outlines that could be used to imprint into a CFD flow domain.  Shapes were outlined as represented in their respective images, with the possibility of creating all sides exposed to black pixels (see Figure 5).  Additionally, a secondary set of outlines were created that were offset from the actual pixel outline by 0.0001m.  This was done to allow for calculation and output of integrated solution variables from Ansys Fluent as not all flow integrated solution variables are available directly on a surface. Thus, by integrating solution variables along lines slightly offset from the original surface lines (offset in the respective face’s normal direction) it maximized the number of CFD solution variables that could be added to the data set.
 
-![Pixel variant examples](/images/Figure-A-5.jpg)
+![Pixel variant outline](/images/Figure-A-5.jpg)
 
 **Figure 5. The resulting outline from the original Core geometry 29 image.**
+
+
+## Simulation information
+Each pixel variant was centered flow domain (see eventually linked paper for geometric convergence study) which was discretized with a programmatically generated mesh (see eventually linked paper for mesh convergence study). Each meshed geometry was then used to run an external flow simulation with a Reynolds number of 1. This was achieved by using density, viscosity, inlet velocity, and shape height values of 1. 
+
+## Dataset compilation
+To create a single matrix for testing and testing purposes, the data obtained from running all of the aforementioned pixel variant simulations was compiled and each formatted into a row vector format.  The following data was collected for each pixel variant
+1. Boolean signifying if the pixel for the current case was added or subtracted
+1. Four booleans representing which pixel faces were exposed to fluid flow (see Figure E-1)
+1. Core geometry or rotated geometry drag components (x-y-z) corresponding to
+  1. Pressure drag
+  1. Viscous drag
+  1. Total drag 
+1. 27 integrated variables for 
+  1. Face 1 (if exposed to fluid flow in original core or rotated geometry)
+  1. Face 2 (if exposed to fluid flow in original core or rotated geometry)
+  1. Face 3 (if exposed to fluid flow in original core or rotated geometry)
+  1. Face 4 (if exposed to fluid flow in original core or rotated geometry)
+1. Pixel variant drag/lift-delta components (x-y-z) corresponding to
+  1. Pressure drag difference from original geometry
+  1. Viscous drag difference from original geometry
+  1. Total drag  difference from original geometry
+
+![Pixel variant examples](/images/Figure-E-1.jpg)
+
+**Figure 6. Populated surface data (or lack thereof) based on face exposure.**
+
+Examining Figure 6, the red pixel was a subtraction change to a core geometry. This means that the core geometry included this pixel, but the resulting pixel variant geometry did not.  The green pixel was an addition change to the same core geometry meaning that this pixel was not included in the core geometry, but was part of the resulting pixel variant.  The face data that was populated for each pixel variant data vector only included surface data for external pixel faces of original core or rotated geometries - the same faces exposed to the fluid flow around the core or rotated geometry. Thus the entry for the red (subtracted) pixel in Figure 6 had data values for pixel faces 1 & 2, but no data for faces 3 & 4. The entry for the green (added) pixel in Figure 6 was the exact opposite; populated data for faces 3 & 4, but no data for faces 1 & 2. 
+
+
+## Missing data
+
+Not all of the simulations were completed for various reasons (mainly random errors from Ansys Meshing and Fluent).  These rows have NA entries for all of their data and should be ignored.
 
 
