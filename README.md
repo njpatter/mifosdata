@@ -45,18 +45,18 @@ To create a single matrix for testing and testing purposes, the data obtained fr
 1. Boolean signifying if the pixel for the current case was added or subtracted
 1. Four booleans representing which pixel faces were exposed to fluid flow (see Figure E-1)
 1. Core geometry or rotated geometry drag components (x-y-z) corresponding to
-  1. Pressure drag
-  1. Viscous drag
-  1. Total drag 
+   1. Pressure drag
+   1. Viscous drag
+   1. Total drag 
 1. 27 integrated variables for 
-  1. Face 1 (if exposed to fluid flow in original core or rotated geometry)
-  1. Face 2 (if exposed to fluid flow in original core or rotated geometry)
-  1. Face 3 (if exposed to fluid flow in original core or rotated geometry)
-  1. Face 4 (if exposed to fluid flow in original core or rotated geometry)
+   1. Face 1 (if exposed to fluid flow in original core or rotated geometry)
+   1. Face 2 (if exposed to fluid flow in original core or rotated geometry)
+   1. Face 3 (if exposed to fluid flow in original core or rotated geometry)
+   1. Face 4 (if exposed to fluid flow in original core or rotated geometry)
 1. Pixel variant drag/lift-delta components (x-y-z) corresponding to
-  1. Pressure drag difference from original geometry
-  1. Viscous drag difference from original geometry
-  1. Total drag  difference from original geometry
+   1. Pressure drag difference from original geometry
+   1. Viscous drag difference from original geometry
+   1. Total drag  difference from original geometry
 
 ![Pixel variant examples](/images/Figure-E-1.jpg)
 
